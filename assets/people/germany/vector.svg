@@ -1,0 +1,17 @@
+<svg width="93" height="11" viewBox="0 0 93 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path id="arrow" d="M91.9626 10.0218C44.9061 -11.7307 43.1303 15.349 0.957031 1.58714" stroke="#0F46C1" stroke-width="0.887859" stroke-dasharray="3.55 3.55"/>
+    <style>
+        #arrow {
+        stroke-dashoffset: 30;
+        animation: svg-arrow-dash 6s linear infinite;
+        }
+        @keyframes svg-arrow-dash {
+        from {
+        stroke-dashoffset: 30;
+        }
+        to {
+        stroke-dashoffset: 0;
+        }
+        }
+    </style>
+</svg>

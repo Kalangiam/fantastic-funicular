@@ -1,0 +1,134 @@
+<template>
+  <div class="Card" :class="[`item-${index}`]">
+    <div class="Card__left">
+      <svg class="Card__icon" :class="[`Card__icon--${icon}`]">
+        <use
+          :xlink:href="require('../assets/svg/actionIcons.svg') + `#${icon}`"
+        ></use>
+      </svg>
+    </div>
+    <div class="Card__right">
+      <div class="Card__title">{{ title }}</div>
+      <div class="Card__description">{{ desc }}</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Card",
+  props: {
+    title: {
+      type: String,
+      default: "",
+    },
+    icon: {
+      type: String,
+      default: "",
+    },
+    desc: {
+      type: String,
+      default: "",
+    },
+    index: {
+      type: Number,
+      default: 0,
+    },
+  },
+};
+</script>
+
+<style scoped>
+.Card {
+  margin: 15px;
+  width: 280px;
+  min-width: 255px;
+  min-height: 285px;
+  box-sizing: border-box;
+  border-radius: 60px;
+  background: #fff;
+  padding: 40px;
+  display: grid;
+  grid-template-rows: auto 100px;
+  align-items: baseline;
+  text-align: left;
+  cursor: pointer;
+  flex-grow: 1;
+  flex-basis: 0;
+  transition: all 0.1s ease-in;
+}
+.Card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 7px rgba(0, 0, 0, 0.05);
+}
+
+.Card__left {
+  margin-right: 37px;
+  position: relative;
+}
+
+.Card__icon {
+  font-size: 52px;
+  color: #2469c7;
+  position: relative;
+  transform: scale(0.9);
+}
+
+.Card__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: Kanit;
+  color: #0f46c1;
+  @apply text-xl leading-loose;
+}
+
+.Card__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  font-family: Roboto;
+  opacity: 0.6;
+  max-width: 220px;
+  font-size: 15px;
+  line-height: 23px;
+  @apply text-black;
+}
+
+.Card__icon--pray-hands {
+  width: 83px;
+  height: 84px;
+}
+.Card__icon--bible-closed {
+  width: 85px;
+  height: 84px;
+}
+.Card__icon--answers {
+  width: 83px;
+  height: 84px;
+}
+
+@media (max-width: 600px) {
+  .Card {
+    margin-right: 0px;
+    margin-bottom: 40px;
+  }
+
+  .Card__description {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 500px) {
+  .Card {
+    margin-bottom: 40px;
+  }
+
+  .Card__description {
+    max-width: 220px;
+  }
+}
+</style>

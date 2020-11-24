@@ -1,0 +1,18 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: deeepvision/github-action-docker-build@release/1.0
+        with:
+          name: awr-countdown-ui
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: deeepvision/github-action-deploy@release/1.0

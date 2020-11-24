@@ -1,0 +1,19 @@
+<svg width="1196" height="1291" viewBox="0 0 1196 1291" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="circle" opacity="0.2" d="M880.667 1062.76C1048.83 925.254 1122.25 679.974 1057.23 472.472C898.989 -32.6217 234.638 74.5567 42.368 502.644C-177.166 991.507 508.004 1367.49 880.667 1062.76Z" fill="#FEABB3"/>
+    <style>
+        #circle {
+        animation: zoom 9s ease-in-out 4s infinite;
+        }
+        @keyframes zoom {
+        0% {
+        transform: scale(1);
+        }
+        50% {
+        transform: scale(1.05);
+        }
+        100% {
+        transform: scale(1);
+        }
+        }
+    </style>
+</svg>
