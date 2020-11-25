@@ -458,7 +458,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
-  background: #0f46c1;
+  background: #db4150;
   border-radius: 3px;
 }
 .FormWithSocials__close::before {
@@ -469,7 +469,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
-  background: #0f46c1;
+  background: #db4150;
   border-radius: 3px;
 }
 
