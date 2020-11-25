@@ -1,23 +1,17 @@
 <template>
   <div class="RequestCoach">
-    <div class="RequestCoach__wrap">
-      <div class="RequestCoach__item">
-        <div class="RequestCoach__image">
-          <img src="../assets/requestCoach.jpg" alt="Coach" />
-        </div>
-        <div class="RequestCoach__description">
-          <div class="RequestCoach__Title">
-            {{ getContent("request_coach.request_baptismal_coach") }}
-          </div>
-          <div class="RequestCoach__about">
-            <p>{{ getContent("request_coach.still_have_questions") }}</p>
-            <p>{{ getContent("request_coach.baptismal_coach_help_you") }}</p>
-          </div>
-        </div>
-        <div class="RequestCoach__button">
-          <a @click="openCoach">{{ getContent("request_coach.coach_me") }}</a>
-        </div>
+    <div class="RequestCoach__image">
+      <img src="../assets/requestCoach.jpg" alt="Coach" />
+    </div>
+    <div class="RequestCoach__description">
+      <div class="RequestCoach__title">Request Baptismal Coach</div>
+      <div class="RequestCoach__about">
+        <p>Still have questions or doubts before Baptism?</p>
+        <p>Request a Baptismal Coach to help you!</p>
       </div>
+    </div>
+    <div class="RequestCoach__button">
+      <a @click="openCoach">Coach me</a>
     </div>
   </div>
 </template>
@@ -38,10 +32,6 @@ export default {
     isValid: true,
   }),
   methods: {
-    getContent(key) {
-      const content = this.translateLang.find((item) => item.langKey === key);
-      return content ? content.value : key;
-    },
     openCoach() {
       this.name = localStorage.getItem("name");
       this.email = localStorage.getItem("email");
@@ -78,19 +68,10 @@ export default {
 
 <style scoped>
 .RequestCoach {
-  padding-top: 70px;
-}
-.RequestCoach__wrap {
-  max-width: 1140px;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  margin: 0 auto;
-}
-.RequestCoach__item {
   grid-column: 2 / 12;
   height: 166px;
   background: #fff;
-  border-radius: 60px;
+  border-radius: 30px;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
@@ -100,8 +81,7 @@ export default {
   min-width: 300px;
 }
 .RequestCoach__image img {
-  border-radius: 0 80px 90px 0;
-  height: 166px;
+  border-radius: 0 70px 112px 0;
 }
 .RequestCoach__description {
   padding: 0 20px;
@@ -113,25 +93,18 @@ export default {
   line-height: 21px;
   color: #000000;
   opacity: 0.6;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.RequestCoach__Title {
+.RequestCoach__title {
   opacity: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-family: Kanit;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 21px;
-  line-height: 2;
-  color: #0f46c1;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 44px;
+  color: #0267b5;
 }
 .RequestCoach__button {
   margin-right: 30px;
+  white-space: nowrap;
 }
 
 .RequestCoach__Inputs {
@@ -164,26 +137,30 @@ export default {
 }
 
 .RequestCoach__button a {
-  border: 1px dashed #0f46c1;
+  border: 1px dashed #db4150;
   border-radius: 20px;
   padding: 10px 25px;
-  color: #0f46c1;
+  color: #db4150;
   transition: all 0.4s;
   cursor: pointer;
 }
 .RequestCoach__button a:hover {
-  border: 1px solid #0f46c1;
+  border: 1px solid #db4150;
 }
 .RequestCoach__button a:active {
   color: #fff;
-  background: #0f46c1;
+  background: #db4150;
 }
 
 @media (max-width: 950px) {
-  .RequestCoach__item {
+  .RequestCoach {
     grid-column: 4 / 10;
     height: auto;
     flex-direction: column;
+  }
+
+  .RequestCoach__title {
+    margin-bottom: 30px;
   }
 
   .RequestCoach__image {
@@ -214,30 +191,19 @@ export default {
 }
 
 @media (max-width: 780px) {
-  .RequestCoach__item {
+  .RequestCoach {
     grid-column: 3 / 11;
   }
 }
 
 @media (max-width: 500px) {
-  .RequestCoach__item {
+  .RequestCoach {
     grid-column: 2 / 12;
   }
   .RequestCoach__image img {
     border-radius: 50% 50% 0 0;
     width: 100%;
   }
-}
-
-.RequestCoach__LargeItem {
-  grid-column: 2 / 12;
-  height: 366px;
-  background: #fff;
-  border-radius: 60px;
-  display: flex;
-  justify-content: space-between;
-  overflow: hidden;
-  align-items: center;
 }
 
 .isValid {

@@ -6,28 +6,24 @@
     <div class="InputsPopup__wrap">
       <template v-if="popup === 'reg'">
         <div class="InputsPopup__Title">
-          <p>{{ getContent("request_coach.request_baptismal_coach") }}</p>
+          <p>Request Baptismal Coach</p>
         </div>
         <div class="InputsPopup__about">
-          <p>{{ getContent("request_coach.still_have_questions") }}</p>
-          <p>{{ getContent("request_coach.baptismal_coach_help_you") }}</p>
+          <p>Still have questions or doubts before Baptism?</p>
+          <p>Request a Baptismal Coach to help you!</p>
         </div>
         <div class="RequestCoach__Inputs">
           <input
             v-model="name"
             class="form__input"
-            :placeholder="
-              getContent('main.groups.registration.input.name_plac')
-            "
+            placeholder="Please enter your name"
             @keydown.enter.prevent="onRegister"
           />
           <input
             v-model="email"
             class="form__input"
             :class="{ isValid: !isValid }"
-            :placeholder="
-              getContent('main.groups.registration.input.email_pla')
-            "
+            placeholder="Please enter a valid email"
             @blur="checkForm"
             @keydown.enter.prevent="onRegister"
           />
@@ -36,18 +32,16 @@
             class="not__valid"
             :class="{ notValid: !isValid }"
           >
-            {{ getContent("main.groups.registration.input.not_valid") }}
+            Please enter a valid email address
           </span>
         </div>
         <div class="InputsPopup_button">
-          <a @click="onRegister">{{
-            getContent("call_to_actions.btn_text_1")
-          }}</a>
+          <a @click="onRegister">Submit</a>
         </div>
       </template>
       <template v-if="popup === 'success'">
         <div class="InputsPopup__Title">
-          <p>{{ getContent("action-popup.success") }}</p>
+          <p>Thank you for your request</p>
         </div>
         <div class="InputsPopup__icon">
           <img
@@ -57,7 +51,7 @@
         </div>
         <div></div>
         <div class="InputsPopup_success-button">
-          <a @click="closePopup">{{ getContent("form_with_socials.okay") }}</a>
+          <a @click="closePopup">Okay</a>
         </div>
       </template>
     </div>
@@ -91,10 +85,6 @@ export default {
   },
 
   methods: {
-    getContent(key) {
-      const content = this.translateLang.find((item) => item.langKey === key);
-      return content ? content.value : key;
-    },
     checkForm() {
       if (!this.email) {
         this.isValid = false;
@@ -137,9 +127,11 @@ export default {
 
 <style scoped>
 .InputsPopup {
-  width: 100%;
-  height: 100vh;
   position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease-in-out;
@@ -174,7 +166,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
-  background: #0f46c1;
+  background: #db4150;
   border-radius: 3px;
 }
 .InputsPopup__close::before {
@@ -185,7 +177,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
-  background: #0f46c1;
+  background: #db4150;
   border-radius: 3px;
 }
 
@@ -197,6 +189,7 @@ export default {
   background: #fff;
   width: 60%;
   height: 400px;
+  overflow: auto;
   border-radius: 60px;
   text-align: center;
   padding: 20px;
@@ -208,7 +201,7 @@ export default {
   font-family: Kanit, serif;
   font-size: 40px;
   line-height: 44px;
-  color: #0f46c1;
+  color: #0267b5;
   @apply font-light;
 }
 .InputsPopup__about {
@@ -260,10 +253,10 @@ export default {
 }
 .InputsPopup_button a {
   background: #fff;
-  border: 1px dashed #0f46c1;
+  border: 1px dashed #db4150;
   border-radius: 20px;
   padding: 5px 20px;
-  color: #0f46c1;
+  color: #db4150;
   transition: all 0.4s;
   cursor: pointer;
 
@@ -272,22 +265,21 @@ export default {
   font-size: 17px;
   line-height: 25px;
   text-align: center;
-  color: #0f46c1;
   outline: none;
 }
 .InputsPopup_button a:hover {
-  border: 1px solid #0f46c1;
+  border: 1px solid #db4150;
 }
 .InputsPopup_button a:active {
   color: #fff;
-  background: #0f46c1;
+  background: #db4150;
 }
 .InputsPopup__icon img {
   margin: 20px auto;
 }
 .InputsPopup_success-button a {
   background: #fff;
-  border: 1px dashed #0f46c1;
+  border: 1px dashed #db4150;
   border-radius: 20px;
   padding: 5px 20px;
   color: #0f46c1;
@@ -299,15 +291,15 @@ export default {
   font-size: 17px;
   line-height: 25px;
   text-align: center;
-  color: #0f46c1;
+  color: #db4150;
   outline: none;
 }
 .InputsPopup_success-button a:hover {
-  border: 1px solid #0f46c1;
+  border: 1px solid #db4150;
 }
 .InputsPopup_success-button a:active {
   color: #fff;
-  background: #0f46c1;
+  background: #db4150;
 }
 
 @media (max-width: 800px) {

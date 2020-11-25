@@ -1,7 +1,7 @@
 <template>
   <div class="socials">
     <div class="title">
-      {{ getContent(description) }}
+      {{ description }}
     </div>
     <div class="items">
       <div
@@ -46,12 +46,6 @@ export default {
     translateLang: {
       type: Array,
       default: () => [],
-    },
-  },
-  methods: {
-    getContent(key) {
-      const content = this.translateLang.find((item) => item.langKey === key);
-      return content ? content.value : key;
     },
   },
 };

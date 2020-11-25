@@ -40,12 +40,10 @@ export default {
 
 <style scoped>
 .Card {
-  margin: 15px;
   width: 280px;
   min-width: 255px;
   min-height: 285px;
-  box-sizing: border-box;
-  border-radius: 60px;
+  border-radius: 30px;
   background: #fff;
   padding: 40px;
   display: grid;
@@ -56,10 +54,11 @@ export default {
   flex-grow: 1;
   flex-basis: 0;
   transition: all 0.1s ease-in;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
 }
 .Card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 7px rgba(0, 0, 0, 0.05);
+  border: 2px solid #f8d9dc;
 }
 
 .Card__left {
@@ -79,7 +78,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: Kanit;
-  color: #0f46c1;
+  color: #0267b5;
   @apply text-xl leading-loose;
 }
 
@@ -112,21 +111,6 @@ export default {
 }
 
 @media (max-width: 600px) {
-  .Card {
-    margin-right: 0px;
-    margin-bottom: 40px;
-  }
-
-  .Card__description {
-    max-width: 220px;
-  }
-}
-
-@media (max-width: 500px) {
-  .Card {
-    margin-bottom: 40px;
-  }
-
   .Card__description {
     max-width: 220px;
   }

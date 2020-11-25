@@ -5,19 +5,14 @@
         <img src="../assets/logo/footer-logo.svg" alt="Adventist World Radio" />
       </div>
       <div class="footer__series">
-        <p>{{ getContent("footer.description") }}</p>
+        <p>Presented by Adventist World Radio</p>
       </div>
       <div class="footer__copyright">
-        <p>
-          © {{ getContent("footer.year") }}
-          {{ getContent("footer.disclaimer") }}
-        </p>
+        <p>© 2020 Adventist World Radio. All rights reserved.</p>
       </div>
       <div class="footer__nav">
         <div class="nav-link">
-          <a href="https://privacy.adventist.org/">
-            {{ getContent("footer.nav.privacy") }}
-          </a>
+          <a href="https://privacy.adventist.org/">Privacy policy</a>
         </div>
       </div>
     </div>
@@ -27,18 +22,6 @@
 <script>
 export default {
   name: "Footer",
-  props: {
-    translateLang: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  methods: {
-    getContent(key) {
-      const content = this.translateLang.find((item) => item.langKey === key);
-      return content ? content.value : "";
-    },
-  },
 };
 </script>
 
@@ -67,7 +50,7 @@ export default {
 }
 .nav-link a {
   @apply .text-base leading-loose no-underline;
-  color: #0f46c1;
+  color: #0267b5;
 }
 .nav-link a:hover {
   @apply underline;

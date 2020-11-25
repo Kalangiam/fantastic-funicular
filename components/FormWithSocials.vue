@@ -7,10 +7,10 @@
       <div class="FormWithSocials__wrap">
         <template v-if="!isSuccess">
           <div class="FormWithSocials__title">
-            {{ getContent(popupContent.title) }}
+            {{ popupContent.title }}
           </div>
           <div class="FormWithSocials__description">
-            {{ getContent(popupContent.desc) }}
+            {{ popupContent.desc }}
           </div>
           <div id="registration" class="FormWithSocials__register">
             <template v-if="state === 'request'">
@@ -23,19 +23,19 @@
                   :class="{ 'input__has-error': !isInputValid }"
                   rows="3"
                   max-rows="3"
-                  :placeholder="getContent(popupContent.placeholder)"
+                  :placeholder="popupContent.placeholder"
                   @blur="
                     subject ? (isInputValid = true) : (isInputValid = false)
                   "
                 ></textarea>
                 <div v-if="!isInputValid" class="error-message">
-                  {{ getContent(popupContent.placeholder) }}
+                  {{ popupContent.placeholder }}
                 </div>
               </div>
 
               <div class="top__button">
                 <a @click="onNext">
-                  {{ getContent(popupContent.btnText) }}
+                  {{ popupContent.btnText }}
                 </a>
               </div>
             </template>
@@ -45,18 +45,14 @@
                 <input
                   v-model.trim="firstName"
                   class="input"
-                  :placeholder="
-                    getContent('main.groups.registration.input.name_plac')
-                  "
+                  placeholder="Please enter your name"
                   @keyup.enter="onSubmit"
                 />
                 <input
                   v-model.trim="email"
                   class="input"
                   :class="{ isValid: !isValid }"
-                  :placeholder="
-                    getContent('main.groups.registration.input.email_pla')
-                  "
+                  placeholder="Please enter a valid email"
                   @blur="checkForm"
                   @keydown.enter.prevent="onSubmit"
                 />
@@ -65,7 +61,7 @@
                   class="not__valid"
                   :class="{ notValid: !isValid }"
                 >
-                  {{ getContent("main.groups.registration.input.not_valid") }}
+                  Please enter a valid email address
                 </span>
               </div>
 
@@ -77,8 +73,8 @@
               />
               <div class="top__button" @click="onSubmit">
                 <a>
-                  {{ getContent("action-popup.recieve.btn") }}
-                  {{ getContent(activeSocial.title) }}
+                  Receive via
+                  {{ activeSocial.title }}
                 </a>
               </div>
             </template>
@@ -91,12 +87,10 @@
               alt="You have successfully registered for this group!"
             />
             <div class="FormWithSocials__title">
-              <p>{{ getContent("action-popup.success") }}</p>
+              <p>Thank you for your request</p>
             </div>
             <div class="FormWithSocial__button">
-              <a @click="closePopup">
-                {{ getContent("form_with_socials.okay") }}
-              </a>
+              <a @click="closePopup">Okay</a>
             </div>
           </div>
         </template>
@@ -147,16 +141,6 @@ export default {
   },
 
   computed: {
-    errorTextMessage() {
-      if (this.popupContent.type === "pray") {
-        return this.getContent("registration.error.pray");
-      } else if (this.popupContent.type === "question") {
-        return this.getContent("registration.error.question");
-      }
-
-      return this.getContent("registration.error.request");
-    },
-
     socials() {
       const collection = [
         {
@@ -264,12 +248,6 @@ export default {
       const fullName = this.isRegistered ? localStorage.name : this.firstName;
       const email = this.isRegistered ? localStorage.email : this.email;
 
-      let languageCode = "eng";
-      const lang = localStorage.lang;
-      if (lang === "spa") {
-        languageCode = "spa";
-      }
-
       let requestType = "";
       if (this.popupContent.type === "pray") {
         requestType = "prayer";
@@ -289,7 +267,7 @@ export default {
       if (this.messengerType !== "email") {
         let { url } = this.activeSocial;
         if (this.activeSocial.id !== "sms") {
-          const query = `{request:${requestType}} {name:${fullName}} {lang:${languageCode}} {campaign:ubp2}{email: ${email}}`; //eslint-disable-line
+          const query = `{request:${requestType}} {name:${fullName}} {lang:eng} {campaign:ubp2}{email: ${email}}`; //eslint-disable-line
           url = `${url}${this.subject} ${query}`;
         }
         window.open(url, "_blank");
@@ -301,11 +279,6 @@ export default {
       }
 
       this.isSuccess = true;
-    },
-
-    getContent(key) {
-      const content = this.translateLang.find((item) => item.langKey === key);
-      return content ? content.value : key;
     },
 
     closePopup() {
@@ -372,7 +345,7 @@ export default {
   font-family: Kanit, serif;
   font-size: 40px;
   line-height: 44px;
-  color: #0f46c1;
+  color: #0267b5;
   @apply font-light;
 }
 
@@ -442,7 +415,7 @@ export default {
   cursor: pointer;
   padding: 15px 30px;
   color: #fff;
-  background: #0099ff;
+  background: #db4150;
   border: none;
   border-radius: 32px;
   box-sizing: border-box;
@@ -454,7 +427,7 @@ export default {
   outline: none;
 }
 .top__button a:hover {
-  background: #0f46c1;
+  background: #ff717f;
 }
 .top__button a:active {
   background: #feabb3;
@@ -513,27 +486,25 @@ export default {
 }
 .FormWithSocial__button a {
   background: #fff;
-  border: 1px dashed #0f46c1;
+  border: 1px dashed #db4150;
   border-radius: 20px;
   padding: 5px 20px;
-  color: #0f46c1;
+  color: #db4150;
   transition: all 0.4s;
   cursor: pointer;
-
   font-family: Kanit;
   font-weight: 500;
   font-size: 17px;
   line-height: 25px;
   text-align: center;
-  color: #0f46c1;
   outline: none;
 }
 .FormWithSocial__button a:hover {
-  border: 1px solid #0f46c1;
+  border: 1px solid #db4150;
 }
 .FormWithSocial__button a:active {
   color: #fff;
-  background: #0f46c1;
+  background: #db4150;
 }
 
 @media (max-width: 800px) {
