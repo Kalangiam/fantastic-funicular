@@ -16,8 +16,8 @@
   background-image: url("../assets/descktopBg.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  height: 90vh;
+  background-size: 1920px 672px;
+  height: 672px;
   position: relative;
 }
 
@@ -64,9 +64,11 @@
   line-height: 34px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1000px) {
   .header {
     background-image: url("../assets/mobileBg.jpg");
+    background-size: 1000px 785px;
+    height: 785px;
   }
 
   .header__button a {

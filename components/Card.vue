@@ -56,6 +56,7 @@ export default {
   transition: all 0.1s ease-in;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.03);
   box-sizing: border-box;
+  border: 2px solid #fff;
 }
 .Card:hover {
   border: 2px solid #f8d9dc;

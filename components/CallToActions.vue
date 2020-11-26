@@ -128,7 +128,7 @@ export default {
   max-width: 1150px;
   width: 100%;
   margin: 70px auto;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .CallToActions__title {

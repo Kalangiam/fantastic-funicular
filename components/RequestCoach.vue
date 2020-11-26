@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="RequestCoach__button">
-      <a @click="openCoach">Coach me</a>
+      <a @click="openCoach">Request</a>
     </div>
   </div>
 </template>
@@ -101,6 +101,7 @@ export default {
   font-size: 40px;
   line-height: 44px;
   color: #0267b5;
+  margin-bottom: 10px;
 }
 .RequestCoach__button {
   margin-right: 30px;
@@ -143,6 +144,10 @@ export default {
   color: #db4150;
   transition: all 0.4s;
   cursor: pointer;
+  font-family: Kanit;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
 }
 .RequestCoach__button a:hover {
   border: 1px solid #db4150;
@@ -166,12 +171,14 @@ export default {
   .RequestCoach__image {
     width: 100%;
     order: 3;
+    text-align: right;
   }
   .RequestCoach__image img {
-    border-radius: 0 80px 0 0;
-    height: 166px;
+    display: inline-block;
+    height: 300px;
     width: auto;
-    max-height: 200px;
+    max-height: 1000px;
+    border-radius: 80% 0 0 0;
   }
 
   .RequestCoach__description {
@@ -195,14 +202,17 @@ export default {
     grid-column: 3 / 11;
   }
 }
+@media (max-width: 650px) {
+  .RequestCoach__image img {
+    height: auto;
+    width: 100%;
+    max-height: 1000px;
+  }
+}
 
 @media (max-width: 500px) {
   .RequestCoach {
     grid-column: 2 / 12;
-  }
-  .RequestCoach__image img {
-    border-radius: 50% 50% 0 0;
-    width: 100%;
   }
 }
 
