@@ -7,11 +7,11 @@
       @closePopup="openCloseInputsPopup"
     />
     <div class="CallToActions__title">How can we serve you?</div>
-    <RequestCoach
+    <!--<RequestCoach
       class="CallToActions__RequestCoach"
       :translate-lang="translateLang"
       @openPopup="openCloseInputsPopup"
-    />
+    />-->
     <div class="CallToActions__Cards">
       <template v-for="(item, index) in items">
         <Card
@@ -32,7 +32,7 @@ export default {
 
   components: {
     Card: () => import("~/components/Card"),
-    RequestCoach: () => import("~/components/RequestCoach"),
+    // RequestCoach: () => import("~/components/RequestCoach"),
     InputsPopup: () => import("~/components/InputsPopup"),
   },
 
@@ -134,7 +134,7 @@ export default {
 .CallToActions__title {
   font-family: Kanit;
   padding: 0 30px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   line-height: 44px;
   font-style: normal;
   font-weight: 500;

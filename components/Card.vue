@@ -42,10 +42,10 @@ export default {
 .Card {
   width: 280px;
   min-width: 255px;
-  min-height: 285px;
+  min-height: 295px;
   border-radius: 30px;
   background: #fff;
-  padding: 40px;
+  padding: 40px 40px 50px 40px;
   display: grid;
   grid-template-rows: auto 100px;
   align-items: baseline;
@@ -80,7 +80,7 @@ export default {
   text-overflow: ellipsis;
   font-family: Kanit;
   color: #0267b5;
-  @apply text-xl leading-loose;
+  @apply text-2xl leading-loose;
 }
 
 .Card__description {
@@ -89,13 +89,10 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-
   font-family: Roboto;
   opacity: 0.6;
   max-width: 220px;
-  font-size: 15px;
-  line-height: 23px;
-  @apply text-black;
+  @apply text-base text-black;
 }
 
 .Card__icon--pray-hands {

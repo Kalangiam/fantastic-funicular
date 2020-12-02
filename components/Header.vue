@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header__button">
-      <a href="#">▶ Watch Now</a>
+      <a href="https://awr.org/prophecies" target="_blank">▶ Watch Now</a>
     </div>
     <div class="header__speaker">
       <p>with</p>
@@ -25,14 +25,14 @@
   position: absolute;
   bottom: 80px;
   transform: translateX(-50%);
-  padding: 15px 40px;
+  padding: 17px 40px;
   border-radius: 32px;
   transition: all 0.4s;
   color: #fff;
   cursor: pointer;
   font-family: Kanit;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 25px;
   background: #db4150;
   white-space: nowrap;
@@ -60,8 +60,8 @@
 
 .header__speaker-name {
   font-weight: 500;
-  font-size: 28px;
-  line-height: 34px;
+  font-size: 30px;
+  line-height: 36px;
 }
 
 @media (max-width: 1000px) {
