@@ -14,7 +14,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: "AWR - Interactive Online Bible Study",
+    title: "AWR - Earth's Final Countdown with Dr. Duane McKey",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -22,13 +22,13 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "Our dedicated teachers help people all over the world dig more deeply into the Bible",
+          "AWR - Earth's Final Countdown with Dr. Duane McKey",
       },
       { hid: "og:image", property: "og:image", content: "/ogImage.jpg" },
       {
         hid: "og:title",
         property: "og:title",
-        content: "AWR - Interactive Online Bible Study",
+        content: "AWR - Earth's Final Countdown with Dr. Duane McKey",
       },
       {
         hid: "og:description",
