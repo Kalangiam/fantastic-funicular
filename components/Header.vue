@@ -7,9 +7,57 @@
       <p>with</p>
       <p class="header__speaker-name">Dr. Duane McKey</p>
     </div>
+    <countdown :time="time" :interval="100" tag="p">
+      <template slot-scope="props">
+        <div class="header__countdown">
+          <div class="header__countdown__days">
+            <span>{{ props.days }}</span>
+            <small>days</small>
+          </div>
+          <div><span>:</span></div>
+          <div class="header__countdown__minutes">
+            <span>{{ props.hours }}</span>
+            <small>hours</small>
+          </div>
+          <div><span>:</span></div>
+          <div class="header__countdown__seconds">
+            <span>{{ props.seconds }}</span>
+            <small>seconds</small>
+          </div>
+        </div>
+      </template>
+    </countdown>
   </div>
 </template>
-
+<script>
+export default {
+  props: {
+    time: {
+      type: Number,
+      default: 0,
+    },
+  },
+  mounted() {
+    const now = new Date(
+      new Date().toLocaleString("en-US", {
+        timeZone: "America/New_York",
+      })
+    );
+    const result = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + ((7 + 5 - now.getDay()) % 7),
+      19,
+      0
+    );
+    if (result <= now) result.setDate(result.getDate() + 7);
+    this.time = result - now;
+    console.log(result);
+    console.log(result - now);
+    console.log(result.getMilliseconds());
+  },
+};
+</script>
 <style scoped>
 .header {
   text-align: center;
@@ -50,7 +98,8 @@
   text-align: left;
   bottom: 80px;
   position: absolute;
-  left: 63%;
+  left: 50%;
+  margin-left: 180px;
   font-family: Kanit;
   font-weight: 300;
   font-size: 17px;
@@ -62,6 +111,30 @@
   font-weight: 500;
   font-size: 30px;
   line-height: 36px;
+}
+.header__countdown {
+  color: #fff;
+  font-family: Kanit;
+  font-weight: 300;
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  margin-left: -360px;
+  justify-content: space-around;
+}
+.header__countdown span {
+  display: block;
+  font-weight: 500;
+  font-size: 35px;
+  height: 45px;
+}
+.header__countdown small {
+  display: block;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 @media (max-width: 1000px) {
@@ -75,10 +148,16 @@
     bottom: unset;
     top: 280px;
   }
+  .header__countdown {
+    bottom: unset;
+    top: 350px;
+    margin-left: -100px;
+  }
 
   .header__speaker {
     bottom: 65px;
     left: 20px;
+    margin-left: 0;
   }
 }
 </style>
