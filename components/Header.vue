@@ -15,9 +15,14 @@
             <small>days</small>
           </div>
           <div><span>:</span></div>
-          <div class="header__countdown__minutes">
+          <div class="header__countdown__hours">
             <span>{{ props.hours }}</span>
             <small>hours</small>
+          </div>
+          <div><span>:</span></div>
+          <div class="header__countdown__minutes">
+            <span>{{ props.minutes }}</span>
+            <small>minutes</small>
           </div>
           <div><span>:</span></div>
           <div class="header__countdown__seconds">
@@ -118,11 +123,11 @@ export default {
   font-weight: 300;
   display: flex;
   flex-direction: row;
-  width: 200px;
+  width: 250px;
   position: absolute;
   bottom: 80px;
   left: 50%;
-  margin-left: -360px;
+  margin-left: -410px;
   justify-content: space-around;
 }
 .header__countdown span {
@@ -151,7 +156,8 @@ export default {
   .header__countdown {
     bottom: unset;
     top: 350px;
-    margin-left: -100px;
+    margin-left: -125px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
   }
 
   .header__speaker {
