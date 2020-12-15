@@ -51,15 +51,12 @@ export default {
     const result = new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getDate() + ((7 + 5 - now.getDay()) % 7),
+      now.getDate() + ((7 + 4 - now.getDay()) % 7),
       19,
       0
     );
     if (result <= now) result.setDate(result.getDate() + 7);
     this.time = result - now;
-    console.log(result);
-    console.log(result - now);
-    console.log(result.getMilliseconds());
   },
 };
 </script>
