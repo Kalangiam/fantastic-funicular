@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header__button">
-      <a href="https://awr.org/prophecies" target="_blank">▶ Watch Now</a>
+      <a href="https://www.youtube.com/playlist?list=PL-D-edGc9z15CgzaYNsIZBdbspUXKCKdM" target="_blank">▶ Watch Now</a>
     </div>
     <div class="header__speaker">
       <p>with</p>
