@@ -103,6 +103,22 @@ export default {
       ];
     },
   },
+  mounted() {
+    const { cta } = this.$route.query;
+
+    switch (cta) {
+      case "prayer_request":
+        this.$emit("show-popup", this.pray);
+        break;
+
+      case "bible_question":
+        this.$emit("show-popup", this.question);
+        break;
+
+      default:
+        break;
+    }
+  },
 
   methods: {
     openCloseInputsPopup(val) {
