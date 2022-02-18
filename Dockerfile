@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:16-alpine
 
 WORKDIR /data/app
 ADD . /data/app
@@ -8,11 +8,9 @@ ENV \
     PORT=3000
 
 RUN \
-    apk add --no-cache --virtual=build-dependencies git python make g++ && \
-    npm install && \
+    apk add --no-cache --virtual=build-dependencies git && \
+    npm install --force && \
     npm run build && \
-    npm cache clean --force && \
-    rm -rf .npmrc && \
     apk del --no-cache build-dependencies
 
 EXPOSE 3000
