@@ -52,8 +52,7 @@ export default {
         icon: "pray-hands",
         type: "pray",
         title: "Pray for me",
-        desc:
-          "God loves to answer prayers! Leave your request and we will pray for you.",
+        desc: "God loves to answer prayers! Leave your request and we will pray for you.",
         question: "Where do you want to receive your answer?",
         placeholder: "Please enter your prayer request",
         btnText: "Submit",
@@ -85,8 +84,7 @@ export default {
           id: "pray",
           icon: "pray-hands",
           title: "Pray for me",
-          desc:
-            "God loves to answer prayer. Leave your request and we will pray for you.",
+          desc: "God loves to answer prayer. Leave your request and we will pray for you.",
         },
         {
           id: "bible",
