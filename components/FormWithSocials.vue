@@ -13,71 +13,46 @@
             {{ popupContent.desc }}
           </div>
           <div id="registration" class="FormWithSocials__register">
-            <template v-if="state === 'request'">
-              <div class="form-group">
-                <textarea
-                  id="textarea"
-                  v-model.trim="subject"
-                  name="textarea"
-                  class="input_textarea"
-                  :class="{ 'input__has-error': !isInputValid }"
-                  rows="3"
-                  max-rows="3"
-                  :placeholder="popupContent.placeholder"
-                  @blur="
-                    subject ? (isInputValid = true) : (isInputValid = false)
-                  "
-                ></textarea>
-                <div v-if="!isInputValid" class="error-message">
-                  {{ popupContent.placeholder }}
-                </div>
-              </div>
-
-              <div class="top__button">
-                <a @click="onNext">
-                  {{ popupContent.btnText }}
-                </a>
-              </div>
-            </template>
-
-            <template v-else-if="state === 'send'">
-              <div v-show="!isRegistered" class="form-group">
-                <input
-                  v-model.trim="firstName"
-                  class="input"
-                  placeholder="Please enter your name"
-                  @keyup.enter="onSubmit"
-                />
-                <input
-                  v-model.trim="email"
-                  class="input"
-                  :class="{ isValid: !isValid }"
-                  placeholder="Please enter a valid email"
-                  @blur="checkForm"
-                  @keydown.enter.prevent="onSubmit"
-                />
-                <span
-                  v-if="!isValid"
-                  class="not__valid"
-                  :class="{ notValid: !isValid }"
-                >
-                  Please enter a valid email address
-                </span>
-              </div>
-
-              <socials
-                :items="socials"
-                :description="popupContent.question"
-                :value.sync="messengerType"
-                :translate-lang="translateLang"
+            <socials
+              :items="socials"
+              :description="popupContent.question"
+              :value.sync="messengerType"
+              :translate-lang="translateLang"
+            />
+            <div class="top__button" @click="onSubmit">
+              <a>
+                Receive via {{ activeSocial.title }}
+              </a>
+            </div>
+          </div>
+          <div class="FormWithSocials__register-now">
+            <div class="FormWithSocials__description">
+              Do you want to sign up to get weekly reminders via email? They contain special insights into the topic!
+            </div>
+            <div class="form-group">
+              <input
+                v-model.trim="firstName"
+                class="input"
+                placeholder="Please enter your name"
               />
-              <div class="top__button" @click="onSubmit">
-                <a>
-                  Receive via
-                  {{ activeSocial.title }}
-                </a>
-              </div>
-            </template>
+              <input
+                v-model.trim="email"
+                class="input"
+                :class="{ isValid: !isValid }"
+                placeholder="Please enter a valid email"
+                @blur="checkForm"
+              />
+              <span
+                v-if="!isValid"
+                class="not__valid"
+                :class="{ notValid: !isValid }"
+              >
+                Please enter a valid email address
+              </span>
+            </div>
+            <div class="top__button" @click="onRegister">
+              <a>Sign Up</a>
+            </div>
           </div>
         </template>
         <template v-else>
@@ -142,7 +117,7 @@ export default {
 
   computed: {
     socials() {
-      const collection = [
+      return [
         {
           id: "email",
           title: "Email",
@@ -154,131 +129,55 @@ export default {
           title: "WhatsApp",
           icon: "whatsApp",
           activeIcon: "whatsApp-active",
-          url: "https://api.whatsapp.com/send?phone=19498607007&text=",
+          url: "https://api.whatsapp.com/send/?phone=12512973600",
         },
         {
           id: "messanger",
           title: "Messenger",
           icon: "fb-messanger",
           activeIcon: "fb-messanger-active",
-          url: "http://m.me/Inspire360Now?message=1111",
-        },
-        {
-          id: "viber",
-          title: "Viber",
-          icon: "viber",
-          activeIcon: "viber-active",
-          url: "viber://pa?chatURI=Inspire360Now&text=",
-        },
-        {
-          id: "telegram",
-          title: "Telegram",
-          icon: "telegram",
-          activeIcon: "telegram-active",
-          url: "https://t.me/r360bot/?text=",
+          url: "http://m.me/AWR360",
         },
       ];
-
-      if (this.countryCode === "US" || this.countryCode === "CA") {
-        collection.splice(1, 0, {
-          id: "sms",
-          title: "SMS",
-          icon: "sms",
-          activeIcon: "sms-active",
-          url: "sms:+1(949)8607007",
-        });
-      }
-
-      return collection;
     },
-  },
-
-  watch: {
-    messengerType(value) {
-      const social = this.socials.find((social) => social.id === value);
-      if (social && social.id) {
-        this.activeSocial = social;
-      }
-    },
-  },
-
-  mounted() {
-    if (localStorage.getItem("name") && localStorage.getItem("email")) {
-      this.isRegistered = true;
-    }
   },
 
   methods: {
     checkForm() {
-      if (!this.email) {
-        this.isValid = false;
-        return;
-      }
-      this.isValid = this.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g);
-    },
-
-    async onNext() {
-      if (!this.isInputValid) return;
-      try {
-        const text = await (
-          await fetch("https://www.cloudflare.com/cdn-cgi/trace")
-        ).text();
-
-        let data = text.replace(/[\r\n]+/gu, '","').replace(/[=]+/gu, '":"');
-        data = '{"' + data.slice(0, data.lastIndexOf('","')) + '"}';
-        const jsondata = JSON.parse(data);
-        this.countryCode = jsondata.loc;
-      } catch (e) {
-        console.error(e);
-      }
-
-      this.state = "send";
+      this.isValid = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(this.email);
     },
 
     onSubmit() {
-      if (!this.name) this.name = localStorage.name;
-      if (!this.email) this.email = localStorage.email;
-      if (!this.email) {
-        this.isValid = false;
-        return;
-      }
-      this.isValid = this.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+      // Handle submission here
+    },
+
+    async onRegister() {
+      this.checkForm();
       if (!this.isValid) return;
 
-      const fullName = this.isRegistered ? localStorage.name : this.firstName;
-      const email = this.isRegistered ? localStorage.email : this.email;
-
-      let requestType = "";
-      if (this.popupContent.type === "pray") {
-        requestType = "prayer";
-      } else if (this.popupContent.type === "question") {
-        requestType = "question";
-      }
-
       const payload = {
-        firstName: fullName,
-        email,
-        subject: this.subject,
-        communicationMode: this.activeSocial.title,
+        fields: [
+          { name: "firstname", value: this.firstName },
+          { name: "email", value: this.email },
+        ],
       };
 
-      this.$emit("on-submit", payload);
-
-      if (this.messengerType !== "email") {
-        let { url } = this.activeSocial;
-        if (this.activeSocial.id !== "sms") {
-          const query = `{request:${requestType}} {name:${fullName}} {lang:eng} {campaign:ubp2}{email: ${email}}`; //eslint-disable-line
-          url = `${url}${this.subject} ${query}`;
+      const response = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/4189584/d9f6aeef-5e97-48ea-ba80-b55e0c0cd081`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         }
-        window.open(url, "_blank");
-      }
+      );
 
-      if (!this.isRegistered) {
-        localStorage.setItem("name", this.firstName);
-        localStorage.setItem("email", this.email);
+      if (response.ok) {
+        this.isSuccess = true;
+      } else {
+        console.error("Failed to submit form", await response.text());
       }
-
-      this.isSuccess = true;
     },
 
     closePopup() {
@@ -292,7 +191,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .FormWithSocials {
   width: 100%;

@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header__button">
       <a
-        href="https://www.youtube.com/playlist?list=PL-D-edGc9z15CgzaYNsIZBdbspUXKCKdM"
+        href="http://more.bibleawr.com"
         target="_blank"
         >▶ Watch Now</a
       >
@@ -47,20 +47,21 @@ export default {
     },
   },
   mounted() {
-    const now = new Date(
-      new Date().toLocaleString("en-US", {
-        timeZone: "America/New_York",
-      })
-    );
-    const result = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + ((7 + 4 - now.getDay()) % 7),
-      19,
-      0
-    );
-    if (result <= now) result.setDate(result.getDate() + 7);
-    this.time = result - now;
+
+const now = new Date(
+  new Date().toLocaleString("en-US", {
+    timeZone: "America/New_York",
+  })
+);
+
+
+const nextFriday = new Date(now);
+nextFriday.setDate(now.getDate() + ((12 - now.getDay()) % 7)); 
+nextFriday.setHours(19, 0, 0, 0); 
+
+if (nextFriday <= now) nextFriday.setDate(nextFriday.getDate() + 7);
+
+this.time = nextFriday - now;
   },
 };
 </script>
